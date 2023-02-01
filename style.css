@@ -1,0 +1,22 @@
+body {
+    text-align: center;
+}
+
+
+
+.player-hearts,
+.computer-hearts {
+    display: flex;
+    gap: 5px;
+}
+
+.hearts-container,
+.selection-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.start-button {
+    visibility: hidden;
+}
+
