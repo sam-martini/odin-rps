@@ -8,6 +8,24 @@ const endmessageEl = document.querySelector('.endmessage-display')
 const buttonEl = document.querySelector('.button-display')
 const startButton = document.querySelector('.start-button')
 
+//load images
+const rockR = document.createElement('img');
+rockR.src = 'images/rock-r.png';
+const scissorsR = document.createElement('img');
+scissorsR.src = 'images/scissors-r.png';
+const paperR = document.createElement('img');
+paperR.src = 'images/paper-r.png';
+const rockL = document.createElement('img');
+rockL.src = 'images/rock-l.png';
+const scissorsL = document.createElement('img');
+scissorsL.src = 'images/scissors-l.png';
+const paperL = document.createElement('img');
+paperL.src = 'images/paper-l.png';
+const lost = document.createElement('img');
+lost.src = 'images/lost.png';
+const won = document.createElement('img');
+won.src = 'images/won.png';
+
 
 //create and show hearts
 for (let i = 0; i < 5; i++) {
@@ -43,6 +61,28 @@ function removeHeart(lives) {
     let targetId = lives;
     let targetHeart = document.getElementById(targetId);
     targetHeart.style.visibility = 'hidden'
+}
+
+function showPlayer(playerChoice) {
+    playerDisplay.innerHTML = ''
+    if (playerChoice == 'rock') {
+        playerDisplay.appendChild(rockL);
+    } else if (playerChoice == 'scissors') {
+        playerDisplay.appendChild(scissorsL);
+    } else if (playerChoice == 'paper') {
+        playerDisplay.appendChild(paperL);
+    }
+}
+
+function showComputer(computerChoice) {
+    computerDisplay.innerHTML = ''
+    if (computerChoice == 'rock') {
+        computerDisplay.appendChild(rockR);
+    } else if (computerChoice == 'scissors') {
+        computerDisplay.appendChild(scissorsR);
+    } else if (computerChoice == 'paper') {
+        computerDisplay.appendChild(paperR);
+    }
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -98,7 +138,8 @@ const choices = ['rock', 'paper', 'scissors'];
 const handleClick = (e) => {
     playerChoice = e.target.id;
     computerChoice = getRandomItem(choices);
-    showSelected(playerChoice, computerChoice);
+    showPlayer(playerChoice);
+    showComputer(computerChoice);
     winner = playRound(playerChoice, computerChoice);
     updateScore(winner);
     
@@ -116,14 +157,6 @@ choices.forEach((choice) => {
     buttonEl.appendChild(button);
     button.addEventListener('click', handleClick);
 });
-
-
-
-
-function showSelected(playerChoice, computerChoice) {
-    playerDisplay.textContent = playerChoice;
-    computerDisplay.textContent = computerChoice;
-}
 
 
 
