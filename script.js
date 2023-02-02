@@ -5,7 +5,7 @@ const playerDisplay = document.querySelector('.player-display')
 const computerDisplay = document.querySelector('.computer-display')
 const messageEl = document.querySelector('.message-display')
 const endmessageEl = document.querySelector('.endmessage-display')
-const choicesEl = document.querySelector('.choice-display')
+const buttonEl = document.querySelector('.button-display')
 const startButton = document.querySelector('.start-button')
 
 
@@ -33,11 +33,6 @@ function getRandomItem(arr) {
     const randomIndex = Math.floor(Math.random()*arr.length);
     const item = arr[randomIndex];
     return item;
-}
-
-function showSelected(playerChoice, computerChoice) {
-    playerDisplay.textContent = playerChoice;
-    computerDisplay.textContent = computerChoice;
 }
 
 function displayScore(playerScore, computerScore) {
@@ -99,6 +94,7 @@ let winner;
 const choices = ['rock', 'paper', 'scissors'];
 
 
+
 const handleClick = (e) => {
     playerChoice = e.target.id;
     computerChoice = getRandomItem(choices);
@@ -108,8 +104,8 @@ const handleClick = (e) => {
     
     if (playerLives === 0 || computerLives === 0) {
         getWinner();
-        hideChoices();
-        showStartButton();
+        removeChoices();
+        appendStartButton();
     }
 }
 
@@ -117,9 +113,17 @@ choices.forEach((choice) => {
     const button = document.createElement('button');
     button.id = choice;
     button.innerText = choice;
-    choicesEl.appendChild(button);
+    buttonEl.appendChild(button);
     button.addEventListener('click', handleClick);
 });
+
+
+
+
+function showSelected(playerChoice, computerChoice) {
+    playerDisplay.textContent = playerChoice;
+    computerDisplay.textContent = computerChoice;
+}
 
 
 
@@ -127,18 +131,21 @@ choices.forEach((choice) => {
 
 function getWinner() {
     if (playerScore > computerScore) {
-        endmessageEl.textContent += 'You beat the computer!!!'
+        endmessageEl.textContent = 'You beat the computer!!!'
     } else {
-        endmessageEl.textContent += 'You lost the game!!!'
+        endmessageEl.textContent = 'You lost the game!!!'
     }
 }
 
-function hideChoices() {
-    choicesEl.style.visibility = 'hidden';
+function removeChoices() {
+    buttonEl.innerHTML = '';
 }
 
-function showStartButton() {
-    startButton.style.visibility = 'visible';
+function appendStartButton() {
+    const startButton = document.createElement('button');
+    startButton.id = 'start-button';
+    startButton.textContent = 'Play Again'
+    buttonEl.appendChild(startButton);
     startButton.addEventListener('click', () => {
         window.location.reload();
     })
