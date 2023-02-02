@@ -29,14 +29,14 @@ won.src = 'images/won.png';
 
 //create and show hearts
 for (let i = 0; i < 5; i++) {
-    const heart = document.createElement('div');
-    heart.textContent = '💙';
+    const heart = document.createElement('img');
+    heart.src = 'images/heart.png';
     heart.id = i;
     playerHeartsEl.appendChild(heart);
 }
 for (let i = 5; i < 10; i++) {
-    const heart = document.createElement('div');
-    heart.textContent = '💙';
+    const heart = document.createElement('img');
+    heart.src = 'images/heart.png';
     heart.id = i;
     computerHeartsEl.appendChild(heart);
 }
