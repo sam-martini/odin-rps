@@ -1,6 +1,10 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+div {
+   border: 2px solid black; 
 }
 body {
     text-align: center;
@@ -34,25 +38,34 @@ body {
     gap: 8px;
 }
 
-.score-display {
-   margin-top: 5px;
+.name-container {
+    display: flex;
+    font-size: 16px;
+    justify-content: space-around;
 }
 
+.score-display {
+   
+}
+
+img {
+
+}
 .selection-container {
+    background-color: #36b4c2;
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 10px;
+    flex-basis: 50%;
 }
 
 .player-display,
 .computer-display {
-    background-color: rgb(54, 180, 194);
-    margin-top: 8px;
+    background-color: rgb(68, 207, 161);
 }
 
 .message-display {
-    margin-bottom: 8%;
     padding: 8px
 }
 
@@ -71,12 +84,10 @@ button {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: 16px;
+    flex-basis: 25%;
 }
 
 .start-button {
     background-color: bisque;
-    visibility: hidden;
-    position: absolute;
 }
 
