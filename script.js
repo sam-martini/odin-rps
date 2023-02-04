@@ -118,6 +118,16 @@ function updateScore(winner) {
     }
 }
 
+function updateMessage(winner) {
+    if (winner == 'player') {
+        endmessageEl.textContent = 'Nice one!'
+    } else if (winner == 'computer') {
+        endmessageEl.textContent = 'Dang. Try again!'
+    } else {
+        endmessageEl.textContent = 'What are the chances?!'
+    }
+}
+
 
 
 
@@ -142,6 +152,7 @@ const handleClick = (e) => {
     showComputer(computerChoice);
     winner = playRound(playerChoice, computerChoice);
     updateScore(winner);
+    updateMessage(winner);
     
     if (playerLives === 0 || computerLives === 0) {
         getWinner();
