@@ -12,21 +12,26 @@ body {
 }
 
 .container {
-    background-color: #36b4c2;
+    background-color: #a9def9;
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
 .header {
-    flex: .4 1 auto;
-    background-image: linear-gradient(yellow, #36b4c2);
+    flex: .1 1 auto;
+    background-image: radial-gradient(rgb(238, 249, 255), #a9def9);
     padding: 8px;
 }
 
 .game-container {
     flex: .3 1 auto;
     padding-top: 8px;
+}
+
+.message-display {
+    font-family: 'Schoolbell';
+    text-decoration: underline;
 }
 
 .button-display {
@@ -38,9 +43,10 @@ body {
 }
 
 .footer {
-    background-color: rgb(222, 172, 106);
+    background-color: #d5bdaf;
     flex: 0 1 auto;
     margin-top: auto;
+    color: rgba(0, 0, 0, 0.300);
 }
 
 
@@ -84,19 +90,41 @@ body {
     background-color: bisque;
 }
 
-button {
-    font-size: 28px;
-    padding: 8px;
-    border-radius: 5%;
-}
-
 .button-display {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
 
-.start-button {
-    background-color: bisque;
+button {
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 5%;
+    border: 0.1em solid #FFFFFF;
+    text-decoration: none;
+    font-family: 'Silkscreen', monospace;
+    transition: all .5s;
 }
 
+button:hover {background-color:#FFFFFF;}
+
+#rock {
+    background-color: #ffd6e0;
+    width: 29%
+}
+
+#rock:hover {background-color: #FFFFFF;}
+
+#paper {
+    background-color: #ffef9f;
+    width: 29%;
+}
+
+#paper:hover {background-color: #FFFFFF;}
+
+#scissors {
+    background-color: #c1fba4;
+    width: 29%;
+}
+
+#scissors:hover {background-color: #FFFFFF;}
