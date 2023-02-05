@@ -22,9 +22,21 @@ scissorsL.src = 'images/scissors-l.png';
 const paperL = document.createElement('img');
 paperL.src = 'images/paper-l.png';
 const lost = document.createElement('img');
-lost.src = 'images/lost.png';
+lost.src = 'images/lost-l.png';
 const won = document.createElement('img');
-won.src = 'images/won.png';
+won.src = 'images/won-r.png';
+const imagesL = [
+    rockL, paperL, scissorsL
+]
+imagesL.forEach((image) => {
+    image.classList.add("animated-l");
+});
+const imagesR = [
+    rockR, paperR, scissorsR
+]
+imagesR.forEach((image => {
+    image.classList.add("animated-r")
+}))
 
 
 //create and show hearts
@@ -142,7 +154,6 @@ let computerScore = 0;
 let winner;
 
 const choices = ['rock', 'paper', 'scissors'];
-
 
 
 const handleClick = (e) => {

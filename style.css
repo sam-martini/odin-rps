@@ -13,7 +13,6 @@ body {
 }
 
 .container {
-    background-color: ;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -139,3 +138,68 @@ button:hover {background-color:#FFFFFF;}
 }
 
 #scissors:hover {background-color: #FFFFFF;}
+
+
+@keyframes wiggle {
+    0%, 7% {
+        transform: rotateZ(0);
+    }
+    15% {
+        transform: rotateZ(-15deg);
+    }
+    20% {
+        transform: rotateZ(-10deg);
+    }
+    25% {
+        transform: rotateZ(-10deg);
+    }
+    30% {
+        transform: rotateZ(6deg);
+    }
+    35% {
+        transform: rotateZ(-4deg);
+    }
+    40%, 100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+@keyframes right {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(60deg) translateY(-50px);
+    }
+    70% {
+        transform: rotate(-25deg) translateY(0px);
+    }
+    80% {
+        transform: rotate(10deg);
+    }
+
+}
+
+@keyframes left {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-60deg) translateY(-50px);
+    }
+    70% {
+        transform: rotate(15deg) translateY(0px);
+    }
+    80% {
+        transform: rotate(-15deg);
+    }
+}
+
+.animated-r {
+    animation: right .3s linear;
+}
+
+.animated-l {
+    animation: left .3s linear;
+}
+
