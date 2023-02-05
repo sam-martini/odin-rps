@@ -195,11 +195,21 @@ button:hover {background-color:#FFFFFF;}
     }
 }
 
+@keyframes fall {
+    50% {
+        transform: rotate(50px);
+    }
+}
+
 .animated-r {
     animation: right .3s linear;
 }
 
 .animated-l {
     animation: left .3s linear;
+}
+
+.fade-heart {
+    opacity: 0.2;
 }
 

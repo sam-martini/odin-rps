@@ -72,7 +72,7 @@ function displayScore(playerScore, computerScore) {
 function removeHeart(lives) {
     let targetId = lives;
     let targetHeart = document.getElementById(targetId);
-    targetHeart.style.visibility = 'hidden'
+    targetHeart.classList.add('fade-heart');
 }
 
 function showPlayer(playerChoice) {
