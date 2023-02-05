@@ -23,6 +23,7 @@ body {
     padding: 8px;
     background-color: rgb(24, 9, 30);
     color: white;
+    text-shadow: 0 0 0.6rem #ffe6ff
 }
 
 .game-container {
@@ -195,12 +196,6 @@ button:hover {background-color:#FFFFFF;}
     }
 }
 
-@keyframes fall {
-    50% {
-        transform: rotate(50px);
-    }
-}
-
 .animated-r {
     animation: right .3s linear;
 }
@@ -211,5 +206,27 @@ button:hover {background-color:#FFFFFF;}
 
 .fade-heart {
     opacity: 0.2;
+}
+
+@keyframes shine {
+    15% {
+      color: #f8d5e3;
+    }
+    20% {
+      color: #ffe6ff;
+      text-shadow: 0 0 0.6rem #ffe6ff, 0 0 0.8rem rgb(152, 158, 44);
+    }
+  }
+
+.header-rock {
+    animation: shine 8s infinite;
+}
+
+.header-paper {
+    animation: shine 10s infinite;
+}
+
+.header-scissors {
+    animation: shine 5s infinite;
 }
 
