@@ -134,9 +134,9 @@ function updateMessage(winner) {
     if (winner == 'player') {
         endmessageEl.textContent = 'Nice one!'
     } else if (winner == 'computer') {
-        endmessageEl.textContent = 'Dang. Try again!'
+        endmessageEl.textContent = 'Try again!'
     } else {
-        endmessageEl.textContent = 'What are the chances?!'
+        endmessageEl.textContent = 'Copycat!'
     }
 }
 
