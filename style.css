@@ -75,7 +75,7 @@ body {
 }
 
 .score-display {
-    color: white;
+    color: rgba(245, 245, 245, 0.832);
     text-shadow: 1px 1px 4px #000000;
 }
 
