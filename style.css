@@ -32,6 +32,8 @@ body {
     background-color: #1f1753;
     background-image: radial-gradient(#6371ad, #142d71);
     border: 5px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
 
 }
 
