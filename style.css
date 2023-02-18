@@ -3,81 +3,70 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Silkscreen', monospace;
-    
 }
 
 html {
     height: -webkit-fill-available;
 }
 
+button {
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 1em;
+    border-radius: 5%;
+    border: 0.1em solid #FFFFFF;
+    text-decoration: none;
+    font-family: 'Silkscreen', monospace;
+    transition: all .3s;
+}
+
+
 body {
-    text-align: center;
-    font-size: 2rem;
+    display: flex;
     min-height: 100vh;
     min-height: 100svh;
     min-height: -webkit-fill-available;
-    display: flex;
     flex-direction: column;
+ 
+
+    text-align: center;
+    font-size: 2rem;
     background-image: linear-gradient(#27223e, #4540af);
 }
 
-
-
-
-.container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
 .header {
+    height: 4em;
     padding: .5em;
     color: white;
     text-shadow: 0 0 0.6rem #ffe6ff;
-   
 }
 
-.game-container {
-    flex-basis: 30rem;
-    padding-top: 1em;
-}
-
-.btn-container {
+  
+.main {
     display: flex;
-    gap: 1em;
+    flex: 1;
+    align-items: center;
     justify-content: center;
 }
-
-.message-display {
-    color: white;
-    text-shadow: 2px 5px 4px #000000;
-    align-self: center;
-    
+  
+  
+.main > .game-container {
+    flex: 1;
+    max-width: 780px;
 }
 
+
+
+  
 .footer {
     background-color: #d5bdaf;
     color: rgba(0, 0, 0, 0.300);
     font-size: 1rem;
 }
 
-.message-lost {
-    background-color: crimson;
-}
-
-.message-won {
-    background-color: #f8d5e3;
-}
-
-.message-draw {
-    background-color: #2a369f;
-}
 
 
-
-
-
+/* - - - - - - - - */
 
 
 
@@ -88,9 +77,9 @@ body {
 
 .player-hearts,
 .computer-hearts {
+    padding-top: 1em;
     display: flex;
-    justify-content: space-around;
-    gap: 2px;
+    gap: 3px;
 }
 
 .name-container {
@@ -111,13 +100,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    gap: 2rem;
+    padding-top: 2.5rem;
 }
 
 .results-display {
     text-decoration: underline;
     padding: 1em;
-    font-size: 24px;
+    font-size: 2rem;
     font-style: italic;
     background: linear-gradient(#cae16c, #74bcce);
     -webkit-text-fill-color: transparent;
@@ -125,17 +114,42 @@ body {
     -webkit-background-clip: text;
 }
 
-
-button {
-    cursor: pointer;
-    font-size: 18px;
-    padding: 8px;
-    border-radius: 5%;
-    border: 0.1em solid #FFFFFF;
-    text-decoration: none;
-    font-family: 'Silkscreen', monospace;
-    transition: all .5s;
+.btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 3.5em;
+    padding-bottom: 2em;
 }
+
+.message-display {
+    color: white;
+    text-shadow: 2px 5px 4px #000000;
+    align-self: center;
+}
+
+
+
+
+
+
+
+
+.message-lost {
+    background-color: crimson;
+}
+
+.message-won {
+    background-color: #f8d5e3;
+}
+
+.message-draw {
+    background-color: #2a369f;
+}
+
+
+
+
 
 button:hover {background-color:#FFFFFF;}
 
@@ -255,16 +269,18 @@ button:hover {background-color:#FFFFFF;}
       color: #ffe6ff;
       text-shadow: 0 0 0.6rem #ffe6ff, 0 0 0.8rem rgb(152, 158, 44);
     }
-  }
+}
 
-  img {
+
+
+img {
     max-width: 100%;
     height: auto;
-  }
+}
 
 
-  @media (max-width: 680px) {
+@media (max-width: 680px) {
     body {
        font-size: 1.8rem;
     }
-  }
+}
