@@ -1,14 +1,14 @@
-const playerHeartsEl = document.querySelector('.player-hearts')
-const computerHeartsEl = document.querySelector('.computer-hearts')
-const scoreEl = document.querySelector('.score-display')
-const playerDisplay = document.querySelector('.player-display')
-const computerDisplay = document.querySelector('.computer-display')
-const messageEl = document.querySelector('.message-display')
-const endmessageEl = document.querySelector('.endmessage-display')
-const buttonEl = document.querySelector('.button-display')
-const startButton = document.querySelector('.start-button')
+// Query Selectors
+const playerHeartsEl = document.querySelector('.player-hearts');
+const computerHeartsEl = document.querySelector('.computer-hearts');
+const scoreEl = document.querySelector('.score-display');
+const playerEl = document.querySelector('.player-display');
+const computerEl = document.querySelector('.computer-display');
+const resultsEl = document.querySelector('.results-display');
+const messageEl = document.querySelector('.message-display');
+const btnContainer = document.querySelector('.btn-container');
 
-//load images
+// Load Images
 const rockR = document.createElement('img');
 rockR.src = 'images/rock-r.png';
 const scissorsR = document.createElement('img');
@@ -21,99 +21,77 @@ const scissorsL = document.createElement('img');
 scissorsL.src = 'images/scissors-l.png';
 const paperL = document.createElement('img');
 paperL.src = 'images/paper-l.png';
-const lost = document.createElement('img');
-lost.src = 'images/lost-l.png';
-const won = document.createElement('img');
-won.src = 'images/won-r.png';
-const imagesL = [
-    rockL, paperL, scissorsL
-]
+// Add class to images
+const imagesL = [rockL, paperL, scissorsL]
 imagesL.forEach((image) => {
     image.classList.add("animated-l");
 });
-const imagesR = [
-    rockR, paperR, scissorsR
-]
+const imagesR = [rockR, paperR, scissorsR]
 imagesR.forEach((image => {
     image.classList.add("animated-r")
 }))
 
 
-//create and show hearts
-for (let i = 0; i < 5; i++) {
-    const heart = document.createElement('img');
-    heart.src = 'images/heart.png';
-    heart.id = i;
-    playerHeartsEl.appendChild(heart);
-}
-for (let i = 5; i < 10; i++) {
-    const heart = document.createElement('img');
-    heart.src = 'images/heart.png';
-    heart.id = i;
-    computerHeartsEl.appendChild(heart);
-}
+// Global Variables
+let playerLives = 5;
+let computerLives = 5;
+let playerScore = 0;
+let computerScore = 0;
+let playerChoice;
+let computerChoice;
+let winner;
 
-function capitalize(string) {
-    const lower = string.toLowerCase();
-    return string.charAt(0).toUpperCase()
-        + lower.slice(1);
-}
+const choices = ['rock', 'paper', 'scissors'];
 
-function getRandomItem(arr) {
-    const randomIndex = Math.floor(Math.random()*arr.length);
-    const item = arr[randomIndex];
-    return item;
-}
 
-function displayScore(playerScore, computerScore) {
-    scoreEl.textContent = `${playerScore} - ${computerScore}`
-}
 
-function removeHeart(lives) {
-    let targetId = lives;
-    let targetHeart = document.getElementById(targetId);
-    targetHeart.classList.add('fade-heart');
-}
-
-function showPlayer(playerChoice) {
-    playerDisplay.innerHTML = ''
-    if (playerChoice == 'rock') {
-        playerDisplay.appendChild(rockL);
-    } else if (playerChoice == 'scissors') {
-        playerDisplay.appendChild(scissorsL);
-    } else if (playerChoice == 'paper') {
-        playerDisplay.appendChild(paperL);
-    }
-}
-
-function showComputer(computerChoice) {
-    computerDisplay.innerHTML = ''
-    if (computerChoice == 'rock') {
-        computerDisplay.appendChild(rockR);
-    } else if (computerChoice == 'scissors') {
-        computerDisplay.appendChild(scissorsR);
-    } else if (computerChoice == 'paper') {
-        computerDisplay.appendChild(paperR);
-    }
-}
-
+// Game Main
 function playRound(playerSelection, computerSelection) {
     if (computerSelection == playerSelection) {
-        messageEl.textContent = 'Draw!'
+        resultsEl.innerHTML = 'Draw!'
         return 'draw'
     } else if (
         (computerSelection == 'rock' && playerSelection == 'scissors') ||
         (computerSelection == 'scissors' && playerSelection == 'paper') ||
         (computerSelection == 'paper' && playerSelection == 'rock')
     ) {
-        messageEl.textContent = `${capitalize(computerSelection)} beats ${capitalize(playerSelection)}!`
+        resultsEl.innerHTML = `${capitalize(computerSelection)} beats ${capitalize(playerSelection)}!`
         return 'computer'
     } else {
-        messageEl.textContent = `${capitalize(playerSelection)} beats ${capitalize(computerSelection)}!`
+        resultsEl.innerHTML = `${capitalize(playerSelection)} beats ${capitalize(computerSelection)}!`
         return 'player'
     }
 }
 
+function game(e) {
+    playerChoice = e.target.id;
+    computerChoice = getRandomItem(choices);
+    showPlayer(playerChoice);
+    showComputer(computerChoice);
+    winner = playRound(playerChoice, computerChoice);
+    updateScore(winner);
+    updateMessage(winner);
+    
+    if (playerLives === 0 || computerLives === 0) {
+        getWinner();
+        removeChoiceButtons();
+        appendStartButton();
+    }
+}
+
+function getWinner() {
+    if (playerScore > computerScore) {
+        messageEl.innerHTML = 'You beat the computer!!!';
+        messageEl.style.backgroundColor = '#cae16c'
+    } else {
+        messageEl.innerHTML = 'You lost the game!!!';
+        messageEl.style.backgroundColor = 'crimson';
+    }
+}
+
+
+
+// Track Score
 function updateScore(winner) {
     if (winner == 'player') {
         playerScore++;
@@ -130,78 +108,116 @@ function updateScore(winner) {
     }
 }
 
+function removeHeart(lives) {
+    let targetId = lives;
+    let targetHeart = document.getElementById(targetId);
+    targetHeart.classList.add('fade-heart');
+}
+
 function updateMessage(winner) {
     if (winner == 'player') {
-        endmessageEl.textContent = 'Nice one!'
+        messageEl.innerHTML = 'Nice one!';
+        messageEl.style.backgroundColor = '#cae16c';
     } else if (winner == 'computer') {
-        endmessageEl.textContent = 'Try again!'
+        messageEl.innerHTML = 'Try again!';
+        messageEl.style.backgroundColor = 'crimson';
     } else {
-        endmessageEl.textContent = 'Copycat!'
+        messageEl.innerHTML = 'Copycat!';
+        messageEl.style.backgroundColor = 'blue';
     }
 }
 
 
 
+// Display results
 
-// game //
-
-let playerChoice;
-let computerChoice;
-let playerLives = 5;
-let computerLives = 5;
-let playerScore = 0;
-let computerScore = 0;
-let winner;
-
-const choices = ['rock', 'paper', 'scissors'];
+function displayScore(playerScore, computerScore) {
+    scoreEl.textContent = `${playerScore} - ${computerScore}`
+}
 
 
-const handleClick = (e) => {
-    playerChoice = e.target.id;
-    computerChoice = getRandomItem(choices);
-    showPlayer(playerChoice);
-    showComputer(computerChoice);
-    winner = playRound(playerChoice, computerChoice);
-    updateScore(winner);
-    updateMessage(winner);
-    
-    if (playerLives === 0 || computerLives === 0) {
-        getWinner();
-        removeChoices();
-        appendStartButton();
+function showPlayer(playerChoice) {
+    playerEl.innerHTML = ''
+    if (playerChoice == 'rock') {
+        playerEl.appendChild(rockL);
+    } else if (playerChoice == 'scissors') {
+        playerEl.appendChild(scissorsL);
+    } else if (playerChoice == 'paper') {
+        playerEl.appendChild(paperL);
     }
 }
 
-choices.forEach((choice) => {
-    const button = document.createElement('button');
-    button.id = choice;
-    button.innerText = choice;
-    buttonEl.appendChild(button);
-    button.addEventListener('click', handleClick);
-});
-
-
-
-// end game //
-
-function getWinner() {
-    if (playerScore > computerScore) {
-        endmessageEl.textContent = 'You beat the computer!!!'
-    } else {
-        endmessageEl.textContent = 'You lost the game!!!'
+function showComputer(computerChoice) {
+    computerEl.innerHTML = ''
+    if (computerChoice == 'rock') {
+        computerEl.appendChild(rockR);
+    } else if (computerChoice == 'scissors') {
+        computerEl.appendChild(scissorsR);
+    } else if (computerChoice == 'paper') {
+        computerEl.appendChild(paperR);
     }
 }
 
-function removeChoices() {
-    buttonEl.innerHTML = '';
+
+
+// Add / remove elements
+
+function createButtons() {
+    choices.forEach((choice) => {
+        const button = document.createElement('button');
+        button.id = choice;
+        button.innerText = choice;
+        btnContainer.appendChild(button);
+        button.addEventListener('click', game);
+    });
+}
+
+function createHearts() {
+    for (let i = 0; i < 10; i++) {
+        const heart = document.createElement('img');
+        heart.src = 'images/heart.png';
+        heart.id = i;
+        if (i < 5) {
+            playerHeartsEl.appendChild(heart);
+        } else {
+            computerHeartsEl.appendChild(heart);
+        }
+    }
+}
+
+function removeChoiceButtons() {
+    btnContainer.innerHTML = '';
 }
 
 function appendStartButton() {
-    const startButton = document.createElement('button');
-    startButton.id = 'start-button';
-    startButton.textContent = 'Play Again'
-    buttonEl.appendChild(startButton);
-    startButton.addEventListener('click', () => {
+    const startBtn = document.createElement('button');
+    startBtn.id = 'start-btn';
+    startBtn.textContent = 'Play Again'
+    btnContainer.appendChild(startBtn);
+    startBtn.addEventListener('click', () => {
         window.location.reload();
     })
 }
+
+
+
+// Helpers
+
+function capitalize(string) {
+    const lower = string.toLowerCase();
+    return string.charAt(0).toUpperCase()
+        + lower.slice(1);
+}
+
+function getRandomItem(arr) {
+    const randomIndex = Math.floor(Math.random()*arr.length);
+    const item = arr[randomIndex];
+    return item;
+}
+
+
+
+
+
+createHearts();
+createButtons();
